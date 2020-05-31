@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Кирилл Мальцев](https://up.htmlacademy.ru/javascript/20/user/838151).
-* Наставник: `Неизвестно`.
+* Наставник: [Неизветный Енот].
 
 ---
 
