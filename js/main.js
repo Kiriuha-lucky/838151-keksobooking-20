@@ -4,6 +4,11 @@ var randomNumber = function (max) {
   return Math.floor(Math.random() * Math.floor(max) + 1);
 };
 
+var randomMinMax = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+
 
 var createAds = function () {
   var one = {};
@@ -34,8 +39,8 @@ var createAds = function () {
           ]
         },
         "location": {
-          "x": 650,
-          "y": 500
+          "x": randomNumber(100),
+          "y": randomMinMax(130, 630)
         }
       }
     };
@@ -51,11 +56,26 @@ var mapPins = document.querySelector('.map__pins');
 var pinsTemplate = document.querySelector('#pin').content.querySelector('button');
 var fragment = document.createDocumentFragment();
 
+var renderPins = function(ads){
+  for (var i = 0; i < ads.length; i++) {
+    var element = pinsTemplate.cloneNode(true);
+    element.children[0].src = ads[i].author.avatar;
+    element.children[0].alt = ads[i].author.offer.title;
+    element.style.top = ads[i].author.location.y - element.width / 2 + 'px';
+    element.style.left = ads[i].author.location.x + '%';
+    console.log(ads[i].author.location.y);
+    console.log(element);
+    console.log(element.offsetTop);
+    console.log(element.clientWidth);
 
-
-for (var i = 0; i < adsArray.length; i++) {
-  var element = pinsTemplate.cloneNode(true);
-  element.children[0].src = adsArray[0].author.avatar;
-  fragment.appendChild(element);
+    fragment.appendChild(element);
+  };
+  return fragment;
 };
-mapPins.appendChild(fragment);
+
+
+
+
+
+
+mapPins.appendChild(renderPins(adsArray));
