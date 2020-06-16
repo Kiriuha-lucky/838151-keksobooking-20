@@ -61,21 +61,11 @@ var renderPins = function(ads){
     var element = pinsTemplate.cloneNode(true);
     element.children[0].src = ads[i].author.avatar;
     element.children[0].alt = ads[i].author.offer.title;
-    element.style.top = ads[i].author.location.y - element.width / 2 + 'px';
+    element.style.top = ads[i].author.location.y + 'px';
     element.style.left = ads[i].author.location.x + '%';
-    console.log(ads[i].author.location.y);
-    console.log(element);
-    console.log(element.offsetTop);
-    console.log(element.clientWidth);
-
     fragment.appendChild(element);
   };
   return fragment;
 };
-
-
-
-
-
 
 mapPins.appendChild(renderPins(adsArray));
