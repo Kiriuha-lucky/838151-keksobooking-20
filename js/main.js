@@ -20,7 +20,7 @@ var createAds = function () {
           "title": 'строка, заголовок предложения',
           "address": '600, 350',
           "price": 15000,
-          "type": 'palace',
+          "type": 'flat',
           "rooms": 5,
           "guests": 10,
           "checkin": '12:00',
@@ -87,11 +87,26 @@ var renderCardAd = function () {
       }
       };
 
+      var typeRoom = function(arr) {
+        switch (arr[0].author.offer.type) {
+          case 'flat':
+          return 'Квартира';
+          case 'bungalo':
+          return 'Бунгало';
+          case 'house':
+          return 'Дом';
+          case 'palace':
+          return 'Дворец';
+        };
+      };
+
+      console.log(typeRoom(adsArray));
+
       var cardTemplate = document.querySelector('#card').content.querySelector('.map__card').cloneNode(true);
       cardTemplate.querySelector('.popup__title').textContent = adsArray[1].author.offer.title;
       cardTemplate.querySelector('.popup__text--address').textContent = adsArray[1].author.offer.address;
       cardTemplate.querySelector('.popup__text--price').textContent = adsArray[1].author.offer.price + ' р/ночь';
-      cardTemplate.querySelector('.popup__type').textContent = adsArray[1].author.offer.price + ' р/ночь';
+      cardTemplate.querySelector('.popup__type').textContent = typeRoom(adsArray);
       cardTemplate.querySelector('.popup__text--capacity').textContent = adsArray[1].author.offer.rooms + ' комнаты для ' + adsArray[1].author.offer.guests + ' гостей';
       cardTemplate.querySelector('.popup__text--time').textContent = 'Заезд после ' + adsArray[1].author.offer.checkin + ', выезд до ' + adsArray[1].author.offer.checkout;
       //cardTemplate.querySelector('.popup__features').textContent = adsArray[1].author.offer.features;
